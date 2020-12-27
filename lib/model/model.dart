@@ -4,8 +4,8 @@ class Model {
   String name;
   String image;
   int released;
-  double runtime;
-  int rating;
+  int runtime;
+  double rating;
   List<dynamic> genres;
 
   Model(
