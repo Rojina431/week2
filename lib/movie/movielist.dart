@@ -80,11 +80,14 @@ class _MovieListState extends State<MovieList> {
       Map eachMovie = movielist[i];
       print(eachMovie);
       Model model = Model(
+          id: eachMovie["id"],
           name: eachMovie["title"],
           image: eachMovie["background_image"],
           released: eachMovie['year'],
           runtime: (eachMovie['runtime']),
           rating: (eachMovie['rating']).toDouble(),
+          desc: eachMovie['description_full'],
+          size: eachMovie['size'],
           genres: eachMovie['genres']);
 
       Widget movieList = _cards(model);
@@ -105,7 +108,9 @@ class _MovieListState extends State<MovieList> {
 
   Widget _cards(Model model) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/details', arguments: model);
+      },
       child: Card(
         color: Color(0xffffff),
         child: Column(
@@ -116,6 +121,7 @@ class _MovieListState extends State<MovieList> {
                   model.name,
                   style: TextStyle(color: Color(0xff885566)),
                 )),
+            Text((model.released).toString()),
             Image.network(model.image)
           ],
         ),
